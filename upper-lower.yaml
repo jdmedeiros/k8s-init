@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: UpperLower
+  labels:
+    app: UpperLower
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: UpperLower
+  template:
+    metadata:
+      name: UpperLower
+      labels:
+        app: UpperLower
+    spec:
+      initContainers:
+        - name: UpperAll
+          image: jdmedeiros/upperall:latest
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: persistent-storage
+              mountPath: /data
+      containers:
+        - name: LowerAll
+          image: jdmedeiros/lowerall:latest
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: persistent-storage
+              mountPath: /data
+      volumes:
+        - name: persistent-storage
+          persistentVolumeClaim:
+            claimName: efs-claim
+      restartPolicy: Always
+      
