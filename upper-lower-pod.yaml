@@ -8,7 +8,7 @@ spec:
   containers:
     - name: upperall
       image: jdmedeiros/upperall:latest
-      imagePullPolicy: IfNotPresent
+      imagePullPolicy: Always
       volumeMounts:
         - name: persistent-storage
           mountPath: /data
