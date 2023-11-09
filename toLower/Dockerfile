@@ -6,4 +6,4 @@ WORKDIR /python-docker
 
 COPY . .
 
-CMD [ "python3", "./toLower/app.py"]
+CMD [ "python3", "app.py"]

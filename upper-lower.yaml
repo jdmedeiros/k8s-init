@@ -15,9 +15,16 @@ spec:
       labels:
         app: upperlower
     spec:
-      containers:
+      initContainers:
         - name: upperall
           image: jdmedeiros/upperall:latest
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: persistent-storage
+              mountPath: /data
+      containers:
+        - name: lowerall
+          image: jdmedeiros/lowerall:latest
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: persistent-storage
@@ -26,5 +33,6 @@ spec:
         - name: persistent-storage
           persistentVolumeClaim:
             claimName: efs-claim
-      restartPolicy: Always
+      restartPolicy: Never
+
       
