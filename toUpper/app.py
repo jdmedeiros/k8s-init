@@ -1,6 +1,7 @@
 import csv
 import os
 import logging
+import sys
 
 # Configure the logger
 log_dir = '/data/logs'
@@ -37,5 +38,5 @@ for filename in os.listdir(incoming_dir):
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
 
-# Close the log file handler
 logging.shutdown()
+sys.exit(0)
