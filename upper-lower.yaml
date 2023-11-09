@@ -1,30 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: UpperLower
+  name: upperlower
   labels:
-    app: UpperLower
+    app: upperlower
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: UpperLower
+      app: upperlower
   template:
     metadata:
-      name: UpperLower
+      name: upperlower
       labels:
-        app: UpperLower
+        app: upperlower
     spec:
-      initContainers:
-        - name: UpperAll
-          image: jdmedeiros/upperall:latest
-          imagePullPolicy: IfNotPresent
-          volumeMounts:
-            - name: persistent-storage
-              mountPath: /data
       containers:
-        - name: LowerAll
-          image: jdmedeiros/lowerall:latest
+        - name: upperall
+          image: jdmedeiros/upperall:latest
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: persistent-storage
