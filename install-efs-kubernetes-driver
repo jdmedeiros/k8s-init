@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# aws efs create-file-system --encrypted --tags Key=Name,Value=customer-data --region us-east-1
+# aws efs create-mount-target --file-system-id fs-0a1dbf509e733f4ae --subnet-id subnet-0dcc09da2c1e83aa7 --security-group sg-013317c6fdd11e028 --region us-east-1
+
+# https://aws.amazon.com/blogs/storage/persistent-storage-for-kubernetes/
+# https://github.com/kubernetes-sigs/aws-efs-csi-driver/blob/master/docs/README.md#installation
+
+# helm repo add aws-efs-csi-driver https://kubernetes-sigs.github.io/aws-efs-csi-driver/
+# helm repo update aws-efs-csi-driver
+# helm upgrade --install aws-efs-csi-driver --namespace kube-system aws-efs-csi-driver/aws-efs-csi-driver
+# kubectl get pod -n kube-system -l "app.kubernetes.io/name=aws-efs-csi-driver,app.kubernetes.io/instance=aws-efs-csi-driver"
