@@ -33,6 +33,6 @@ spec:
         - name: persistent-storage
           persistentVolumeClaim:
             claimName: efs-claim
-      restartPolicy: Never
+      restartPolicy: Always
 
       

@@ -1,8 +1,8 @@
 import csv
 import os
 
-incoming_dir = '/data/incoming'
-processed_dir = '/data/processed'
+incoming_dir = '/data/processed'
+processed_dir = '/data/output'
 
 for filename in os.listdir(incoming_dir):
     if filename.endswith('.csv'):
