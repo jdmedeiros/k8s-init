@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: upperlower-job
+  labels:
+    app: upperlower
+spec:
+  template:
+    metadata:
+      name: upperlower-pod
+      labels:
+        app: upperlower
+    spec:
+      initContainers:
+        - name: upperall
+          image: jdmedeiros/upperall:latest
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: persistent-storage
+              mountPath: /data
+      containers:
+        - name: lowerall
+          image: jdmedeiros/lowerall:latest
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: persistent-storage
+              mountPath: /data
+      volumes:
+        - name: persistent-storage
+          persistentVolumeClaim:
+            claimName: efs-claim
+      restartPolicy: Never
+  backoffLimit: 3

@@ -1,5 +1,18 @@
 import csv
 import os
+import logging
+import sys
+
+# Configure the logger
+log_dir = '/data/logs'
+log_filename = 'app.log'
+log_path = os.path.join(log_dir, log_filename)
+
+logging.basicConfig(
+    filename=log_path,
+    level=logging.DEBUG,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
 incoming_dir = '/data/processed'
 processed_dir = '/data/output'
@@ -19,7 +32,11 @@ for filename in os.listdir(incoming_dir):
                         processed_row = [cell.lower() for cell in row]
                         writer.writerow(processed_row)
 
+            logging.info(f"Processed file: {input_file}")
         except FileNotFoundError:
-            print(f"CSV file not found at: {input_file}")
+            logging.error(f"CSV file not found at: {input_file}")
         except Exception as e:
-            print(f"An error occurred: {str(e)}")
+            logging.error(f"An error occurred: {str(e)}")
+
+logging.shutdown()
+sys.exit(0)
