@@ -15,7 +15,7 @@ logging.basicConfig(
 )
 
 incoming_dir = '/data/processed'
-processed_dir = '/data/output'
+processed_dir = '/data/outgoing'
 
 for filename in os.listdir(incoming_dir):
     if filename.endswith('.csv'):
