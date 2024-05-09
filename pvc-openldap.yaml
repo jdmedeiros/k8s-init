@@ -1,0 +1,12 @@
+# https://aws.amazon.com/blogs/storage/persistent-storage-for-kubernetes/
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-claim-openldap
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 1Gi

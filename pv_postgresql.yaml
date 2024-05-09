@@ -1,12 +1,12 @@
-# https://aws.amazon.com/blogs/storage/persistent-storage-for-kubernetes/
+  # https://aws.amazon.com/blogs/storage/persistent-storage-for-kubernetes/
 
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: efs-pv
+  name: efs-pv-postgresql
 spec:
   capacity:
-    storage: 5Gi
+    storage: 1Gi
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
@@ -14,4 +14,4 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: efs.csi.aws.com
-    volumeHandle: fs-0a1dbf509e733f4ae
+    volumeHandle: fs-0fa68d8aa00b4e4ec::fsap-07a5e30585dc00bcb
